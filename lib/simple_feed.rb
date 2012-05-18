@@ -37,6 +37,16 @@ module SimpleFeed
       end
       [resp.status, resp.body]
     end
+
+    def update_feed_item(feed, item, attributes)
+      item = item.id if item.respond_to? :id
+      resp = @conn.put do |req|
+        req.url "/api/feeds/#{feed}/items/#{item}.json"
+        req.headers['Content-Type'] = 'application/json'
+        req.body = JSON.dump({item: attributes})
+      end
+      [resp.status, resp.body]
+    end
   end
 end
 
