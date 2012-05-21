@@ -11,7 +11,7 @@ describe SimpleFeed::Client do
     end
 
     it "gets a 200 response" do
-      client.get_feeds.first.status.should == 200
+      client.get_feeds.first.should == 200
     end
   end
 
